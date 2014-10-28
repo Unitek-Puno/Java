@@ -17,10 +17,10 @@ public class Sesion206 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        String usr = "sa";
-        String pwd = "";
-        String driver = "org.hsqldb.jdbcDriver";
-        String url = "jdbc:hsqldb:hsql://localhost/xdb";
+        String usr = "root";
+        String pwd = "root";
+        String driver = "com.mysql.jdbc.Driver";
+        String url = "jdbc:mysql://localhost/distribuida";
         
         Connection con = null;
         PreparedStatement pstm = null;
@@ -29,16 +29,15 @@ public class Sesion206 {
         try {
             Class.forName(driver);
             con = DriverManager.getConnection(url, usr, pwd);
-            String sql = "SELECT empno, ename, hiredate, deptno FROM emp";
+            String sql = "SELECT paterno, materno, nombres FROM amigo LIMIT 10";
 
             pstm = con.prepareStatement(sql);
             rs = pstm.executeQuery();
             
             while (rs.next()) {
-                System.out.print(rs.getInt("empno") + ", ");
-                System.out.print(rs.getInt("ename") + ", ");
-                System.out.print(rs.getInt("hiredate") + ", ");
-                System.out.println(rs.getInt("deptno") );
+                System.out.print(rs.getString("paterno") + ", ");
+                System.out.print(rs.getString("materno") + ", ");
+                System.out.println(rs.getString("nombres") );
                 
             }
         } catch (Exception e) {
