@@ -8,6 +8,7 @@ package sesion208;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Collection;
 
 /**
  *
@@ -19,7 +20,7 @@ public class Sesion208 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
+        /*
         Connection con = null;
         PreparedStatement pstm = null;
         ResultSet rs = null;
@@ -41,6 +42,14 @@ public class Sesion208 {
             
         } catch (Exception e) {
         }
+                */
+        DepartamentoDAO dept = new DepartamentoDAO();
+        Collection<DepartamentoDTO> coll =  dept.buscarTodos();
+        
+        for (DepartamentoDTO dto:coll) {
+            System.out.println(dto);
+        }
+        
     }
     
 }
