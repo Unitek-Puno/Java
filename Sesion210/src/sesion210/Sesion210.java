@@ -15,7 +15,7 @@ public class Sesion210 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Ventana1 v = new Ventana1();
+        VentanaFrame v = new VentanaFrame();
     }
     
 }
