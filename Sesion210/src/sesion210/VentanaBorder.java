@@ -14,10 +14,10 @@ import java.awt.Frame;
  *
  * @author fr3dy
  */
-public class VentanaFrame  extends Frame {
+public class VentanaBorder  extends Frame {
     private Button b1, b2, b3, b4, b5; 
     
-    public VentanaFrame() {
+    public VentanaBorder() {
         super("Esta es la ventana 1");
         
         setLayout(new BorderLayout());
