@@ -7,6 +7,9 @@ package sesion217;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.Vector;
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -35,16 +38,51 @@ public class DemoJList extends JFrame {
     }
 
     private Vector<Object> _obtenerVectorDatos() {
+        
         Vector<Object> v = new Vector<Object>();
-        v.add("John Lennon");
+        /*v.add("John Lennon");
         v.add("Paul McCartney");
         v.add("George Harrison");
         v.add("Ringo Star");
         v.add("Sandro (Roberto Sanchez)");
         v.add("Charly Garcia");
-        v.add("Caetano Veloso");
+        v.add("Caetano Veloso");*/
+
+        Connection con = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
         
-        
-        return v;
+        try {
+            con = UConnection.getConnection();
+            String sql = "SELECT * FROM departamento LIMIT 10";
+            
+            pstm = con.prepareStatement(sql);
+            
+            rs = pstm.executeQuery();
+                        
+            while( rs.next() ){
+                v.add(rs.getString("dname"));
+            }
+            
+            return v;
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            throw new RuntimeException(ex);
+        }
+        finally
+        {
+            try {
+                if ( rs != null)
+                    rs.close();
+                if (pstm != null)
+                    pstm.close();
+                
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                throw new RuntimeException(ex);
+            }
+        }
+                
     }
 }
